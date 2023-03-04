@@ -2,6 +2,10 @@
 
 This is a simple example that lets you collect data from a PMS5003 air particulate sensor and report it to MQTT.
 
+## Instructions
+
+Ensure you have the dependencies in `/lib`, and add a `secrets.py` with the appropriate values.
+
 ## Dependencies
 
 * adafruit_pm25
