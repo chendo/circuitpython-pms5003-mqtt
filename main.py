@@ -10,6 +10,10 @@ import wifi
 import supervisor
 import socketpool
 
+MQTT_TOPIC = 'aqi/unset'
+MQTT_REPORT_INTERVAL = 5
+AQI_READ_INTERVAL = 15
+
 class AppState:
     def __init__(self):
         self.aq_data = {}
@@ -24,6 +28,8 @@ async def mqtt_loop(app_state):
     try:
         print("My MAC addr:", [hex(i) for i in wifi.radio.mac_address])
 
+        # uncomment below if your board doesn't automatically connect
+      
         # print("Connecting to %s"%secrets["ssid"])
         # wifi.radio.connect(secrets["ssid"], secrets["password"])
         # print("Connected to %s!"%secrets["ssid"])
@@ -41,10 +47,6 @@ async def mqtt_loop(app_state):
             socket_pool=pool,
             # ssl_context=ssl.create_default_context(),
         )
-        # mqtt_client.enable_logger(logging,logging.INFO)
-
-        mqtt_topic = 'aqi/outside'
-        # Connect callback handlers to mqtt_client
 
         print("Attempting to connect to %s" % mqtt_client.broker)
         mqtt_client.connect()
@@ -53,9 +55,9 @@ async def mqtt_loop(app_state):
             mqtt_client.ping()
             jsondata = json.dumps(app_state.aq_data)
 
-            mqtt_client.publish(mqtt_topic, jsondata, False, 0)
-
-            await asyncio.sleep(5)
+            mqtt_client.publish(MQTT_TOPIC, jsondata, False, 0)
+          
+            await asyncio.sleep(MQTT_REPORT_INTERVAL)
 
     except BaseException as err:
         print(f"mqtt loop err: {err=}, {type(err)=}")
@@ -92,12 +94,12 @@ async def sensor_loop(app_state):
             jsondata = json.dumps(data)
             print("Data: %s" % jsondata)
     
-            await asyncio.sleep(15)
+            await asyncio.sleep(AQI_READ_INTERVAL)
     
     
         except BaseException as err:
             print("Unable to read from sensor, retrying: %s" % err)
-            await asyncio.sleep(15)
+            await asyncio.sleep(AQI_READ_INTERVAL)
             continue
 
 async def main():
