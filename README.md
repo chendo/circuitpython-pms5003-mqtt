@@ -4,9 +4,10 @@ This is a simple example that lets you collect data from a PMS5003 air particula
 
 ## Instructions
 
-Ensure you have the dependencies in `/lib`, and add a `secrets.py` with the appropriate values.
-
-Change reporting interval as required. PMSA003i laser has a rated lifespan of 3 years.
+* Install CircuitPython on the ESP32-C3 by using the web installer: https://circuitpython.org/board/adafruit_qtpy_esp32c3/
+* Once it's on your network, upload the dependencies into `/lib` using the onboard web interface
+* Use the onboard code editor to upload the code to `main.py` and set your `secrets.py` accordingly
+* Modify code as required. PMSA003i laser has a rated lifespan of 3 years.
 
 ## Dependencies
 
@@ -17,7 +18,6 @@ Change reporting interval as required. PMSA003i laser has a rated lifespan of 3 
 ## Tested on
 
 * Adafruit ESP32-C3
-* Adafruit Funhouse
 
 ## Bill of Materials
 
