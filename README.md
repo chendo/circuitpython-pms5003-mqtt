@@ -25,6 +25,7 @@ Change reporting interval as required. PMSA003i laser has a rated lifespan of 3 
 * PMSA003i Particulate Sensor: https://www.adafruit.com/product/4632
 * 50mm Stemma QT cable: https://www.adafruit.com/product/4399
 * USB-C cable and power source
+* 3D printed enclosure: https://cad.onshape.com/documents/631774ba247648000195a443/w/5c284afbea7b5b0b521a5afd/e/f65699d12f76ab22b3026994?renderMode=0&uiState=640414876457f41eb16caf33
 
 ## Disclaimer
 
